@@ -1,0 +1,24 @@
+# ---- 构建产物 ----
+build/
+dist/
+__pycache__/
+*.pyc
+*.spec.bak
+
+# ---- 运行时日志 ----
+error.log
+
+# ---- 用户运行时数据（首次启动自动生成，含个人链接记录） ----
+folder_studio_settings.json
+folder_studio_links.json
+
+# ---- 打包后的单文件 exe（二进制走 Release，不进仓库） ----
+FolderStudio.exe
+
+# ---- 测试 / 临时脚本 ----
+_smoke*.py
+_shots/
+__pycache__/
+
+# ---- 工具元数据 ----
+.workbuddy/
