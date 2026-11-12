@@ -27,6 +27,7 @@ import subprocess
 import sys
 import threading
 import traceback
+import webbrowser
 from ctypes import wintypes
 
 import tkinter as tk
@@ -1169,6 +1170,9 @@ CYAN = "#5ec8d8"
 # 版本号（GitHub Release 打 v{APP_VERSION} 标签）：标题栏与底栏右下角显示
 APP_VERSION = "2.3"
 
+# 项目仓库地址：底栏左下角显示，点击用浏览器打开
+REPO_URL = "https://github.com/lza0312/FolderStudio"
+
 # 构建时间（重新打包 exe 时改这里）：底栏右下角显示「构建于 yyyy/mm/dd」
 BUILD_DATE = "2026/11/13"
 
@@ -2008,9 +2012,11 @@ class FolderStudio(tk.Tk):
         self._statusbar = tk.Frame(self, bg=CARD_ALT, height=26, padx=16)
         self._statusbar.pack(fill="x", side="bottom")
         self._statusbar.pack_propagate(False)
-        # 左：预留位置（传 git 后放 GitHub 仓库地址）
-        tk.Label(self._statusbar, text="", bg=CARD_ALT, fg=MUTED,
-                 font=FONT_SUB).pack(side="left")
+        # 左：项目仓库地址，点击用浏览器打开
+        link = tk.Label(self._statusbar, text=REPO_URL.replace("https://", ""),
+                        bg=CARD_ALT, fg=CYAN, font=FONT_SUB, cursor="hand2")
+        link.pack(side="left")
+        link.bind("<Button-1>", lambda _e: webbrowser.open(REPO_URL))
         tk.Label(self._statusbar, text=f"v{APP_VERSION} · 构建于 {BUILD_DATE}",
                  bg=CARD_ALT, fg=MUTED, font=FONT_SUB).pack(side="right")
 
